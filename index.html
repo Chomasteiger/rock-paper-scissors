@@ -1,94 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css">
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
 
-<script>
+    <!-- Header -->
+    <div class="header"><h1>Rock Paper Scissors</h1></div>
     
-    let playerScore = 0;
-let computerScore = 0;
+    <!-- Main -->
+    <div class="main">
+        <!-- This part is the top part of the main. -->
+      <div class="scoreboard">
+        <!-- Here we have the 2 messages, that will change after we start playing -->
+        <h2 class="game-result" id="game-result">Choose Rock, Paper or Scissors</h2>
+        <h3 class="game-message" id="game-message">First to score 5 points wins the game</h3>
+        <!-- Here we have the score -->
+        <div class="score-container">
+            <!-- The player choice -->
+          <div class="choice-container">
+            <div class="choice" id="player-choice"></div>
+            <p class="score" id="player-score">Player score:</p>
+          </div>
+          <div class="choice-container">
+            <!-- The computer choice -->
+            <div class="choice" id="computer-choice"></div>
+            <p class="score" id="computer-score">Computer score:</p>
+          </div>
+        </div>
+      </div>
 
-function getComputerChoice() {
-    let computerChoice = (Math.random() * 3) + 1;
-    computerChoice = Math.floor(computerChoice);
+      <!-- And then we have the buttons -->
+      <div class="buttons">
+        <!-- Rock -->
+        <button class="btn-choice" id="rockbtn">
+          <div class="sign">✊</div>
+        </button>
 
-    if(computerChoice === 1) {
-        return "rock";
-    } else if(computerChoice === 2) {
-        return "paper";
-    } else {
-        return "scissors";
-    }
-}
+        <!-- Paper -->
+        <button class="btn-choice" id="paperbtn">
+          <div class="sign">✋</div>
+        </button>
 
-function getUserChoice() {
-    let userChoice = prompt("Type what you want to play: \n'Rock', 'Paper', or 'Scissors'");
-    userChoice = userChoice.toLowerCase();
-
-    return userChoice;
-}
-
-let computerSelection;
-let playerSelection;
-
-function playRound(playerSelection, computerSelection) {
-    // Draw handling
-    if(playerSelection == "rock" && computerSelection == "rock") {
-        return "Draw! Both players chose rock!";
-    } else if(playerSelection == "paper" && computerSelection == "paper") {
-        return "Draw! Both players chose paper!";
-    } else if(playerSelection == "scissors" && computerSelection == "scissors") {
-        return "Draw! Both players chose scissors!";
-    }
-
-    // User Win Situation
-    if(playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
-        playerScore++;
-
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
-    }
-
-    // User Lose Situation
-    else if(playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock") {
-        computerScore++;
-
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
-    }
-
-    // User Entered Invalid Choice
-    else {
-        return `User entered invalid choice '${playerSelection}'`;
-    }
-}
-
-function playGame() {
-    for(let i = 0; i < 5; i++) {
-        playerSelection = getUserChoice();
-        computerSelection = getComputerChoice();
-
-        alert(playRound(playerSelection, computerSelection));
-    }
-
-    let result;
-
-    if(playerScore > computerScore) {
-        result = 'The User wins the game of Rock Paper Scissors!';
-    } else if(computerScore > playerScore) {
-        result = 'The Computer wins the game of Rock Paper Scissors!';
-    } else {
-        result = 'Draw! Both players tied!';
-    }
-
-    alert(`---\nFinal Score: ${playerScore} - ${computerScore}\n${result}`);
-}
-
-playGame();
-
-</script>
+        <!-- Scissors -->
+        <button class="btn-choice" id="scissorsbtn">
+          <div class="sign">✌</div>
+        </button>
+      </div>
+    </div>
     
-</body>
+    <!-- Here we call JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>
